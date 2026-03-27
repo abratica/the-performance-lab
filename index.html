@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Performance Playbook — Free Ebook</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #141418;
+    color: #E8E0CC;
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .bg-glow {
+    position: fixed;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background: radial-gradient(ellipse at 80% 50%, rgba(200, 169, 106, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    max-width: 1100px;
+    width: 100%;
+    padding: 60px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* BOOK */
+  .book-wrap {
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .book {
+    width: 260px;
+    height: 370px;
+    background: #141418;
+    border-radius: 4px 8px 8px 4px;
+    position: relative;
+    box-shadow: 8px 12px 40px rgba(0,0,0,0.7), 2px 4px 12px rgba(0,0,0,0.5);
+  }
+
+  .book::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 14px;
+    height: 100%;
+    background: #0D0D10;
+    border-radius: 4px 0 0 4px;
+    box-shadow: inset -2px 0 6px rgba(0,0,0,0.4);
+  }
+
+  .book-top-bar {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 4px;
+    background: #C8A96A;
+    border-radius: 0 8px 0 0;
+  }
+
+  .book-inner {
+    padding: 28px 24px 24px 32px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-pill {
+    display: inline-block;
+    background: #C8A96A;
+    color: #141418;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+
+  .book-signal {
+    margin-bottom: 22px;
+  }
+
+  .book-title {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .book-title .the {
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #C8A96A;
+    margin-bottom: 4px;
+  }
+
+  .book-title .perf {
+    font-size: 22px;
+    font-weight: 700;
+    color: #E8E0CC;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+  }
+
+  .book-title .playbook {
+    font-size: 22px;
+    font-weight: 700;
+    color: #C8A96A;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .book-divider {
+    height: 1px;
+    background: #2E2E34;
+    margin-bottom: 12px;
+  }
+
+  .book-subtitle {
+    font-size: 10px;
+    color: #A09070;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .book-author {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #6A5A3A;
+  }
+
+  /* RIGHT SIDE */
+  .content {
+    flex: 1;
+  }
+
+  .label {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #C8A96A;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  h1 {
+    font-size: 46px;
+    font-weight: 700;
+    color: #E8E0CC;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  h1 span {
+    color: #C8A96A;
+  }
+
+  .sub {
+    font-size: 20px;
+    color: #A09070;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+
+  .divider {
+    height: 1px;
+    background: #2E2E34;
+    margin-bottom: 28px;
+  }
+
+  .benefits {
+    list-style: none;
+    margin-bottom: 40px;
+  }
+
+  .benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #C8C0A8;
+    line-height: 1.4;
+  }
+
+  .benefits li::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: #C8A96A;
+    border-radius: 1px;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #C8A96A;
+    color: #141418;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 18px 48px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 20px;
+    display: block;
+    width: fit-content;
+  }
+
+  .cta-btn:hover {
+    background: #D4B87A;
+    transform: translateY(-1px);
+  }
+
+  .url {
+    font-size: 13px;
+    color: #6A5A3A;
+    letter-spacing: 1px;
+  }
+
+  /* Signal SVG */
+  svg.signal line, svg.signal path {
+    stroke: #C8A96A;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="container">
+
+  <!-- BOOK -->
+  <div class="book-wrap">
+    <div class="book">
+      <div class="book-top-bar"></div>
+      <div class="book-inner">
+        <span class="book-pill">FREE eBOOK</span>
+
+        <svg class="book-signal" width="200" height="36" viewBox="0 0 200 36">
+          <path d="M 0 18 L 40 18 L 52 4 L 64 32 L 72 10 L 80 22 L 88 18 L 200 18"
+            fill="none" stroke="#C8A96A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+        </svg>
+
+        <div class="book-title">
+          <div class="the">THE</div>
+          <div class="perf">PERFORMANCE</div>
+          <div class="playbook">PLAYBOOK</div>
+          <div class="book-divider"></div>
+          <div class="book-subtitle">10 Internal Shifts That Break<br>Performance Under Pressure</div>
+          <div class="book-divider"></div>
+          <div class="book-author">BY ANDREW BRATICA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <span class="label">THE PERFORMANCE LAB</span>
+    <h1>Get the free <span>eBook.</span></h1>
+    <p class="sub">The psychology and science behind how we perform under pressure — delivered free when you subscribe.</p>
+
+    <div class="divider"></div>
+
+    <ul class="benefits">
+      <li>The Performance Playbook eBook — free, instantly</li>
+      <li>Weekly newsletters on performance psychology</li>
+      <li>The science behind high-stakes performance</li>
+    </ul>
+
+    <a class="cta-btn" href="https://theperformancelab.substack.com/?utm_source=linkedin&utm_medium=featured" target="_blank">
+      SUBSCRIBE FREE →
+    </a>
+
+    <div class="url">theperformancelab.substack.com</div>
+  </div>
+
+</div>
+
+</body>
+</html>
